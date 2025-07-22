@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_GROUP_MESSAGES, SEND_GROUP_MESSAGE, GET_ME } from '../../graphql/mutations';
 import socket from '../socket_io/Socket';
+import { X } from "lucide-react";
+
 import { BsEmojiSmile } from "react-icons/bs";
 import EmojiPicker from 'emoji-picker-react';
 
@@ -220,13 +222,22 @@ const GroupChat = ({ group, onBack }) => {
             <BsEmojiSmile />
           </button>
           {showEmojiPicker && (
-            <div className="absolute bottom-14 right-16 z-50">
-              <EmojiPicker
-                onEmojiClick={handleEmojiSelect}
-                theme="light"
-              />
-            </div>
-          )}
+  <div className="absolute bottom-14 right-16 z-50 bg-white shadow-lg rounded-lg p-2 relative">
+    {/* Lucide Cross Button */}
+    <button
+      onClick={() => setShowEmojiPicker(false)}
+      className="absolute top-1 right-1 text-gray-500 hover:text-red-500 z-10"
+    >
+      <X size={16} />
+    </button>
+
+    <EmojiPicker
+      onEmojiClick={handleEmojiSelect}
+      theme="light"
+    />
+  </div>
+)}
+
           <button
             type="submit"
             disabled={!message.trim()}

@@ -1,8 +1,7 @@
 import React, { useState, useRef } from "react";
 import { IoSend } from "react-icons/io5";
 import { BsEmojiSmile } from "react-icons/bs";
-import Picker from '@emoji-mart/react';
-import data from '@emoji-mart/data'; // ✅ required for v5+
+
 
 const EmojiMessageInput = ({ socket, userId, currentChat, setMessages, messages }) => {
   const [message, setMessage] = useState("");
@@ -29,10 +28,8 @@ const EmojiMessageInput = ({ socket, userId, currentChat, setMessages, messages 
   };
 
   // ✅ V5 uses 'emoji.unified' or 'emoji.native'
-  const handleEmojiSelect = (emoji) => {
-    setMessage((prev) => prev + emoji.native);
-    inputRef.current?.focus();
-  };
+  // Placeholder for emoji select handler (no-op since picker removed)
+  const handleEmojiSelect = () => {};
 
   return (
     <div className="bg-gray-800 p-4 rounded-b-xl flex items-center relative">
@@ -43,18 +40,7 @@ const EmojiMessageInput = ({ socket, userId, currentChat, setMessages, messages 
         <BsEmojiSmile />
       </button>
 
-      {showEmojiPicker && (
-        <div className="absolute bottom-16 left-4 z-50">
-          <Picker
-            data={data}
-            onEmojiSelect={handleEmojiSelect}
-            theme="dark"
-            emojiSize={24}
-            previewPosition="none"
-            skinTonePosition="none"
-          />
-        </div>
-      )}
+      {/* Emoji picker removed */}
 
       <input
         ref={inputRef}
